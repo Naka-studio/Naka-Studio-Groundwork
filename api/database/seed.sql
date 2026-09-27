@@ -112,8 +112,16 @@ INSERT INTO services (id, title, tagline, description_en, description_id, tags, 
   '["Frontend","Custom","UI/UX","Responsive"]', 6);
 
 -- AVAILABILITY
-INSERT INTO availability (id, status, message) VALUES
-(1, 'available', '{"en":"Currently accepting selected projects.","id":"Saat ini menerima beberapa project pilihan."}');
+INSERT INTO availability (status, message, service_id) VALUES
+('available',
+  '{"en":"Currently accepting selected projects.","id":"Saat ini menerima beberapa project pilihan."}',
+  NULL),
+('available', '{"en":"Currently available.","id":"Saat ini tersedia."}', '01'),
+('available', '{"en":"Currently available.","id":"Saat ini tersedia."}', '02'),
+('available', '{"en":"Currently available.","id":"Saat ini tersedia."}', '03'),
+('available', '{"en":"Currently available.","id":"Saat ini tersedia."}', '04'),
+('available', '{"en":"Currently available.","id":"Saat ini tersedia."}', '05'),
+('available', '{"en":"Currently available.","id":"Saat ini tersedia."}', '06');
 
 -- CONTACT INFO
 INSERT INTO contact_info (id, wa, email, instagram, youtube, linkedin, github, profile_web) VALUES
