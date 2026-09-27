@@ -1,12 +1,19 @@
 const express = require("express");
 const router = express.Router();
 const verifyToken = require("../middleware/auth");
-const { getServices, getServiceById, updateService, updateAvailability } = require("../controllers/services");
+const {
+  getAvailability,
+  getGlobalAvailability,
+  getServiceAvailability,
+  updateAvailability
+} = require("../controllers/availability");
 
-router.get("/", getServices);
-router.get("/:id", getServiceById);
+// Public
+router.get("/", getAvailability);
+router.get("/global", getGlobalAvailability);
+router.get("/service/:service_id", getServiceAvailability);
 
-router.put("/:id", verifyToken, updateService);
-router.put('/:id/availability', verifyToken, updateAvailability)
+// Protected
+router.put("/:id", verifyToken, updateAvailability);
 
 module.exports = router;
