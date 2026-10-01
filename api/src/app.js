@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
+// API Health
+const healthRoutes = require("./routes/health");
 // Public routes
 const authRoutes = require("./routes/auth");
 const blogRoutes = require("./routes/blog");
@@ -34,6 +36,9 @@ app.use("/api/pricing", pricingRoutes);
 app.use("/api/testimonials", testimonialsRoutes);
 app.use("/api/availability", availabilityRoutes);
 app.use("/api/contact", contactRoutes);
+
+// Health
+app.use("/api/health", healthRoutes);
 
 // Ops (semua protected via verifyToken di masing-masing route)
 app.use("/api/ops/contacts", opsContactsRoutes);

@@ -17,6 +17,7 @@ CREATE TABLE projects (
   description TEXT,
   tags JSONB,
   image VARCHAR(500),
+  live_url VARCHAR(500),
   featured BOOLEAN DEFAULT false,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
