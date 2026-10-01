@@ -14,7 +14,7 @@ const {
 } = require("../controllers/projects");
 
 // Public
-router.get("/", validateId, getProjects);
+router.get("/", getProjects);
 router.get("/featured", getFeaturedProjects);
 router.get("/:id", validateId, getProjectById);
 
