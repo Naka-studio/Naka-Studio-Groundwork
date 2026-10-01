@@ -1,13 +1,7 @@
--- schema.sql (Naka Studio)
--- Clean application schema based on the existing schema.sql
--- and the verified structure currently present in Neon.
---
--- This file contains structure only. Seed/data belongs in seed.sql
--- and seed_ops.sql.
+-- schema.sql (naka_studio — public DB)
 
--- =========================================================
--- PUBLIC TABLES
--- =========================================================
+CREATE DATABASE naka_studio;
+\c naka_studio;
 
 -- PROJECTS
 CREATE TABLE projects (
@@ -114,13 +108,12 @@ CREATE TABLE users (
 );
 
 
--- =========================================================
+-- =========================================
 -- OPS SCHEMA (internal operasional)
--- =========================================================
-
+-- =========================================
 CREATE SCHEMA ops;
 
--- CONTACTS
+-- 1. CONTACTS
 CREATE TABLE ops.contacts (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -132,7 +125,7 @@ CREATE TABLE ops.contacts (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- PROJECTS
+-- 2. PROJECTS
 CREATE TABLE ops.projects (
   id SERIAL PRIMARY KEY,
   contact_id INT REFERENCES ops.contacts(id),
@@ -146,7 +139,7 @@ CREATE TABLE ops.projects (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- QUOTATIONS
+-- 3. QUOTATIONS
 CREATE TABLE ops.quotations (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -174,7 +167,7 @@ CREATE TABLE ops.quotations (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- PAYMENTS
+-- 4. PAYMENTS
 CREATE TABLE ops.payments (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -192,7 +185,7 @@ CREATE TABLE ops.payments (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ASSET COLLECTION
+-- 5. ASSET COLLECTION
 CREATE TABLE ops.asset_collections (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -212,7 +205,7 @@ CREATE TABLE ops.asset_items (
   received_at TIMESTAMP
 );
 
--- REVISIONS
+-- 6. REVISIONS
 CREATE TABLE ops.revisions (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -226,7 +219,6 @@ CREATE TABLE ops.revisions (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- SCOPE CHANGES
 CREATE TABLE ops.scope_changes (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -238,7 +230,7 @@ CREATE TABLE ops.scope_changes (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- CHANGE REQUESTS
+-- 7. CHANGE REQUESTS
 CREATE TABLE ops.change_requests (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -254,7 +246,7 @@ CREATE TABLE ops.change_requests (
   notes TEXT
 );
 
--- MAINTENANCE
+-- 8. MAINTENANCE
 CREATE TABLE ops.maintenance_contracts (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -283,7 +275,7 @@ CREATE TABLE ops.maintenance_issues (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- CONCEPT SESSIONS
+-- 9. CONCEPT SESSIONS
 CREATE TABLE ops.concept_sessions (
   id SERIAL PRIMARY KEY,
   contact_id INT REFERENCES ops.contacts(id),
@@ -297,14 +289,23 @@ CREATE TABLE ops.concept_sessions (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- CAPACITY
+-- 10. CAPACITY
 CREATE TABLE ops.capacity_config (
   id INT PRIMARY KEY DEFAULT 1,
   max_active_slots INT DEFAULT 2,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- PROSPECTS
+CREATE VIEW ops.active_capacity AS
+SELECT
+  (SELECT max_active_slots FROM ops.capacity_config WHERE id = 1) AS max_slots,
+  COUNT(*)::int AS used_slots,
+  ((SELECT max_active_slots FROM ops.capacity_config WHERE id = 1) - COUNT(*))::int AS available_slots
+FROM ops.projects
+WHERE capacity_slot = true
+  AND status NOT IN ('CLOSED', 'MAINTENANCE');
+
+-- 11. PROSPECTS
 CREATE TABLE ops.prospects (
   id SERIAL PRIMARY KEY,
   contact_id INT REFERENCES ops.contacts(id),
@@ -317,7 +318,7 @@ CREATE TABLE ops.prospects (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ACTIVITY LOG
+-- 12. ACTIVITY LOG
 CREATE TABLE ops.activity_log (
   id SERIAL PRIMARY KEY,
   project_id INT REFERENCES ops.projects(id),
@@ -329,21 +330,3 @@ CREATE TABLE ops.activity_log (
   metadata JSONB,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
--- =========================================================
--- VIEWS
--- =========================================================
-
-CREATE VIEW ops.active_capacity AS
-SELECT
-  (SELECT max_active_slots
-   FROM ops.capacity_config
-   WHERE id = 1) AS max_slots,
-  COUNT(*)::int AS used_slots,
-  ((SELECT max_active_slots
-    FROM ops.capacity_config
-    WHERE id = 1) - COUNT(*))::int AS available_slots
-FROM ops.projects
-WHERE capacity_slot = true
-  AND status NOT IN ('CLOSED', 'MAINTENANCE');
