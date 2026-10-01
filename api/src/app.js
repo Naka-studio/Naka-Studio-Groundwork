@@ -1,8 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 
+
 // API Health
 const healthRoutes = require("./routes/health");
+
+// Error Handler
+const errorHandler = require("./middleware/errorHandler");
+
 // Public routes
 const authRoutes = require("./routes/auth");
 const blogRoutes = require("./routes/blog");
@@ -52,5 +57,12 @@ app.use("/api/ops/activity", opsActivityRoutes);
 app.get("/", (req, res) => {
   res.json({ message: "Naka Studio API is alive 🎯" });
 });
+
+// 404 For routes that doen't exist
+app.use((req, res) => {
+  res.status(404).json({ success: false, message: "Route not found" });
+});
+
+app.use(errorHandler);
 
 module.exports = app;
