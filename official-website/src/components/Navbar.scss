@@ -1,0 +1,151 @@
+.nav-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition:
+    background 0.35s ease,
+    border 0.35s ease,
+    backdrop-filter 0.35s ease;
+
+  &.is-scrolled {
+    background: color-mix(in srgb, var(--bg) 84%, transparent);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+  }
+}
+
+.nav {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  font: 700 1rem/1 var(--font-display);
+  letter-spacing: -0.04em;
+
+  span {
+    font-size: 0.48em;
+    vertical-align: top;
+    margin-left: 2px;
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: auto;
+
+  a {
+    color: var(--muted);
+    font-size: 0.88rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-btn,
+.menu-btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  padding: 9px;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    color: var(--text);
+  }
+
+  span {
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 15px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition:
+    transform 0.25s var(--ease),
+    background 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.mobile-cta,
+.menu-btn {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .nav {
+    min-height: 72px;
+  }
+
+  .desktop-cta {
+    display: none;
+  }
+
+  .menu-btn {
+    display: inline-flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 72px;
+    left: 14px;
+    right: 14px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.25);
+
+    &.open {
+      display: flex;
+    }
+
+    a {
+      padding: 12px 4px;
+      font-size: 1rem;
+    }
+  }
+
+  .mobile-cta {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 5px;
+  }
+}

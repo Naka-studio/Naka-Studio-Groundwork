@@ -1,0 +1,120 @@
+.pricing {
+  border-top: 1px solid var(--border);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 70px;
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pricing-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s var(--ease);
+
+  &:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+}
+
+.pricing-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pricing-card-name {
+  font: 600 0.66rem/1 var(--display);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pricing-card-amount {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pricing-card-from {
+  font-size: 0.7rem;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pricing-card-price {
+  font: 600 clamp(1.4rem, 2.2vw, 1.85rem)/1 var(--display);
+  letter-spacing: -0.04em;
+  color: var(--accent);
+}
+
+.pricing-card-divider {
+  height: 1px;
+  background: var(--border);
+}
+
+.pricing-card-includes {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pricing-card-includes-label {
+  font: 600 0.64rem/1 var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--faint);
+}
+
+.pricing-card-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.5;
+
+    svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--accent);
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.pricing-footer-note {
+  margin-top: 32px;
+  color: var(--faint);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  max-width: 480px;
+}

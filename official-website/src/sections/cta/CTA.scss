@@ -1,0 +1,63 @@
+.cta-section {
+  padding: 170px 0;
+  border-top: 1px solid var(--border);
+  background: var(--text);
+  color: var(--bg);
+
+  .eyebrow {
+    color: color-mix(in srgb, var(--bg) 60%, transparent);
+  }
+
+  h2 {
+    margin: 30px 0 25px;
+    font: 500 clamp(3.2rem, 7vw, 7.5rem)/0.9 var(--font-display);
+    letter-spacing: -0.07em;
+
+    em {
+      color: color-mix(in srgb, var(--bg) 45%, transparent);
+    }
+  }
+
+  p {
+    max-width: 560px;
+    color: color-mix(in srgb, var(--bg) 60%, transparent);
+    line-height: 1.7;
+  }
+
+  .btn-primary {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .btn-secondary {
+    border-color: color-mix(in srgb, var(--bg) 25%, transparent);
+    color: var(--bg);
+  }
+
+  .cta-footer {
+    margin-top: 60px;
+  }
+
+  @media (max-width: 720px) {
+    padding: 110px 0;
+
+    h2 {
+      font-size: clamp(3rem, 14vw, 5rem);
+    }
+  }
+}
+
+.cta-inner {
+  max-width: 1100px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 35px;
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,265 @@
+/* src/components/skeleton/Skeleton.scss */
+
+.skeleton-block,
+.skeleton-line,
+.skeleton-tag {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.skeleton-block::after,
+.skeleton-line::after,
+.skeleton-tag::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  transform: translateX(-100%);
+  animation: skeleton-shimmer 1.4s infinite;
+}
+
+.skeleton-title {
+  width: 180px;
+  height: 22px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+
+.skeleton-description {
+  width: min(360px, 90%);
+  height: 12px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+
+  &.short {
+    width: min(260px, 70%);
+  }
+}
+
+.skeleton-tag {
+  width: 48px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  display: block;
+
+  &:nth-child(2) {
+    width: 68px;
+  }
+
+  &.short {
+    width: 54px;
+  }
+}
+
+.skeleton-category {
+  width: 70px;
+  height: 9px;
+  border-radius: 3px;
+  margin-top: 16px;
+}
+
+.pricing-skeleton__name {
+  width: 100px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.pricing-skeleton__from {
+  width: 35px;
+  height: 8px;
+  border-radius: 3px;
+}
+
+.pricing-skeleton__price {
+  width: 145px;
+  height: 28px;
+  border-radius: 4px;
+}
+
+.pricing-skeleton__label {
+  width: 85px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.pricing-skeleton__check {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pricing-skeleton__item {
+  width: 75%;
+  height: 11px;
+  border-radius: 3px;
+
+  &.short {
+    width: 55%;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block::after,
+  .skeleton-line::after,
+  .skeleton-tag::after {
+    animation: none;
+  }
+}
+
+/* src/components/skeleton/Skeleton.scss */
+
+.testimonial-skeleton__quote {
+  width: 78%;
+  height: clamp(2.4rem, 5vw, 5.8rem);
+  border-radius: 6px;
+  margin: 0 0 12px 16.666%;
+
+  &.short {
+    width: 52%;
+    margin-bottom: 30px;
+  }
+}
+
+.testimonial-skeleton__by {
+  width: 130px;
+  height: 10px;
+  border-radius: 3px;
+  margin-left: 16.666%;
+}
+
+@media (max-width: 900px) {
+  .testimonial-skeleton__quote,
+  .testimonial-skeleton__quote.short,
+  .testimonial-skeleton__by {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .testimonial-skeleton__quote {
+    height: clamp(2rem, 10vw, 3.5rem);
+  }
+}
+
+/* src/components/skeleton/Skeleton.scss */
+
+.blog-skeleton__tag {
+  width: 70px;
+  height: 20px;
+  border-radius: var(--radius-pill);
+}
+
+.blog-skeleton__read-time {
+  width: 65px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.blog-skeleton__title {
+  width: 82%;
+  height: 28px;
+  border-radius: 5px;
+
+  &.short {
+    width: 58%;
+  }
+}
+
+.blog-skeleton__excerpt {
+  width: 92%;
+  height: 12px;
+  border-radius: 3px;
+
+  &.short {
+    width: 68%;
+  }
+}
+
+.blog-skeleton__date {
+  width: 90px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.blog-skeleton__arrow {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+}
+
+@media (max-width: 720px) {
+  .blog-skeleton__title {
+    height: 24px;
+  }
+}
+
+/* src/components/skeleton/Skeleton.scss */
+
+.work-page-skeleton__category {
+  width: 70px;
+  height: 9px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+}
+
+.work-page-skeleton__title {
+  width: 220px;
+  height: 28px;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.work-page-skeleton__description {
+  width: min(380px, 90%);
+  height: 12px;
+  border-radius: 3px;
+  margin-bottom: 8px;
+
+  &.short {
+    width: min(280px, 70%);
+  }
+}
+
+/* src/components/skeleton/Skeleton.scss */
+
+.services-skeleton__num {
+  width: 28px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.services-skeleton__title {
+  width: 180px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.services-skeleton__tagline {
+  width: 220px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.services-skeleton__icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+}
+
+@media (max-width: 720px) {
+  .services-skeleton__tagline {
+    width: 120px;
+  }
+
+  .services-skeleton__title {
+    width: 140px;
+  }
+}

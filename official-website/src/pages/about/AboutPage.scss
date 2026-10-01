@@ -1,0 +1,233 @@
+.about-page {
+  padding-top: 120px;
+  min-height: 100vh;
+
+  &__header {
+    padding-block: 80px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    text-decoration: none;
+    margin-bottom: 60px;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  &__hero {
+    max-width: 900px;
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 7.5rem);
+    font-weight: 500;
+    line-height: 0.9;
+    letter-spacing: -0.07em;
+    margin: 28px 0 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05em;
+
+    em {
+      font-style: normal;
+      color: var(--muted);
+    }
+  }
+
+  &__sub {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  &__section {
+    padding-block: 100px;
+    border-top: 1px solid var(--border);
+  }
+
+  &__cta {
+    padding-block: 100px;
+    border-top: 1px solid var(--border);
+  }
+
+  &__cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin: 0 0 14px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 440px;
+    }
+  }
+}
+
+// Two col layout
+.about-two-col {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 50px;
+}
+
+// Philosophy
+.about-philosophy {
+  position: relative;
+
+  p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin: 0;
+
+    & + p {
+      margin-top: 28px;
+    }
+  }
+
+  .hand-note {
+    position: absolute;
+    right: 8%;
+    bottom: -20px;
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-style: italic;
+    transform: rotate(-7deg);
+  }
+}
+
+// Approach
+.about-approach {
+  margin-top: 60px;
+  border-top: 1px solid var(--border);
+
+  &__item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 20px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      max-width: 580px;
+    }
+  }
+
+  &__num {
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding-top: 4px;
+  }
+}
+
+// Studio
+.about-studio {
+  p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  &__note {
+    margin-top: 28px !important;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    font-size: 0.9rem !important;
+    font-style: italic;
+  }
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .about-two-col {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-approach {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .about-page {
+    padding-top: 100px;
+
+    &__header {
+      padding-block: 50px 40px;
+    }
+
+    &__back {
+      margin-bottom: 40px;
+    }
+
+    &__section {
+      padding-block: 70px;
+    }
+
+    &__cta {
+      padding-block: 70px;
+    }
+
+    &__cta-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .about-approach {
+    &__item {
+      grid-template-columns: 40px 1fr;
+      gap: 12px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-philosophy .hand-note {
+    transform: none;
+  }
+}

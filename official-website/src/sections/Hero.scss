@@ -1,0 +1,270 @@
+.hero {
+  min-height: 100vh;
+  padding-top: 170px;
+  padding-bottom: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h1 {
+    font: 500 clamp(3.7rem, 8vw, 8.7rem)/0.88 var(--font-display);
+    letter-spacing: -0.07em;
+    margin: 28px 0 34px;
+    max-width: 1050px;
+  }
+
+  p {
+    max-width: 520px;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    line-height: 1.65;
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+  gap: 50px;
+  align-items: center;
+}
+
+.hero-copy {
+  // inherits .reveal from globals
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 34px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition:
+    transform 0.3s var(--ease),
+    background 0.3s ease,
+    border-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-secondary {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+
+  svg {
+    transition: transform 0.25s var(--ease);
+  }
+
+  &:hover svg {
+    transform: translateX(5px);
+  }
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 65%, transparent);
+}
+
+// Hero art
+.hero-art {
+  min-height: 560px;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.orb {
+  width: min(34vw, 470px);
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-core {
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    #f5f5f5,
+    #6f6f6f 42%,
+    #171717 72%
+  );
+  box-shadow: 0 0 90px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+.orb-ring {
+  position: absolute;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+
+.ring-one {
+  inset: 12%;
+  transform: rotate(30deg) scaleY(0.34);
+}
+
+.ring-two {
+  inset: 22%;
+  transform: rotate(-50deg) scaleY(0.3);
+  border-color: var(--faint);
+}
+
+.orbit-line {
+  position: absolute;
+  width: 115%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  transform: rotate(-32deg);
+}
+
+.coord {
+  position: absolute;
+  color: var(--faint);
+  font: 600 0.62rem/1 var(--font-display);
+  letter-spacing: 0.12em;
+}
+
+.coord-a {
+  top: 22%;
+  left: 7%;
+}
+.coord-b {
+  right: 5%;
+  top: 34%;
+}
+.coord-c {
+  bottom: 22%;
+  left: 18%;
+  color: var(--accent);
+}
+
+.scroll-note {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.62rem;
+
+  span {
+    width: 28px;
+    height: 1px;
+    background: var(--border);
+  }
+}
+
+// Responsive
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-art {
+    min-height: 360px;
+  }
+
+  .orb {
+    width: min(62vw, 380px);
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: 100svh;
+    padding-top: 115px;
+
+    h1 {
+      font-size: clamp(3.2rem, 16vw, 6rem);
+      margin-top: 22px;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
+
+  .hero-art {
+    min-height: 280px;
+    margin-top: -5px;
+  }
+
+  .coord-a {
+    left: 3%;
+    top: 13%;
+  }
+  .coord-b {
+    right: 0;
+    top: 24%;
+  }
+  .coord-c {
+    left: 7%;
+    bottom: 10%;
+  }
+
+  .orb {
+    width: 75vw;
+  }
+
+  .scroll-note {
+    display: none;
+  }
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  &[data-status="unavailable"] .status-dot {
+    background: var(--faint);
+  }
+}

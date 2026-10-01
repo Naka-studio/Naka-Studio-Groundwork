@@ -1,0 +1,52 @@
+.manifesto {
+  border-top: 1px solid var(--border);
+}
+
+.manifesto-footer {
+  margin-top: 60px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 50px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+}
+
+.manifesto-content {
+  position: relative;
+
+  h2 {
+    font: 500 clamp(2.7rem, 5.8vw, 6rem)/0.95 var(--font-display);
+    letter-spacing: -0.06em;
+    margin: 0;
+  }
+
+  p {
+    max-width: 650px;
+    margin: 42px 0 0;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+}
+
+.hand-note {
+  position: absolute;
+  right: 8%;
+  bottom: -20px;
+  color: var(--accent);
+  font: italic 600 1.1rem var(--font-display);
+  transform: rotate(-7deg);
+
+  @media (max-width: 720px) {
+    position: static;
+    display: block;
+    margin-top: 32px;
+    transform: rotate(-4deg);
+  }
+}
