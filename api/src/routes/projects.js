@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const verifyToken = require("../middleware/auth");
+const validateId = require("../middleware/validateId");
+
+
 const {
   getProjects,
   getFeaturedProjects,
@@ -11,13 +14,13 @@ const {
 } = require("../controllers/projects");
 
 // Public
-router.get("/", getProjects);
+router.get("/", validateId, getProjects);
 router.get("/featured", getFeaturedProjects);
-router.get("/:id", getProjectById);
+router.get("/:id", validateId, getProjectById);
 
 // Protected
 router.post("/", verifyToken, createProject);
-router.put("/:id", verifyToken, updateProject);
-router.delete("/:id", verifyToken, deleteProject);
+router.put("/:id", verifyToken, validateId, updateProject);
+router.delete("/:id", verifyToken, validateId, deleteProject);
 
 module.exports = router;
